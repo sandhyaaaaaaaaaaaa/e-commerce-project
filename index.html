@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sanju's Shop Hub — Filter & Sort</title>
+    <meta name="description" content="Sanju's Shop Hub — filter by category/price/rating, sort and add to cart." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+    <meta name="theme-color" content="#0a0e16">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23101824'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='64'%3E🛍️%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="site-title">Sanju's Shop Hub</h1>
+        <div class="header-actions">
+          <div class="search-wrap">
+            <label for="search-input" class="visually-hidden">Search products</label>
+            <input id="search-input" class="search-input" type="search" placeholder="Search products..." autocomplete="off" />
+          </div>
+          <label for="sort-select" class="visually-hidden">Sort products</label>
+          <select id="sort-select" aria-label="Sort products">
+            <option value="rating-desc">Rating: High to Low</option>
+            <option value="rating-asc">Rating: Low to High</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+          </select>
+          <button id="open-filters" class="icon-btn" type="button" aria-label="Open filters">☰</button>
+          <button id="cart-button" class="icon-btn" type="button" aria-label="Open cart">🛒<span id="cart-count" class="badge">0</span></button>
+        </div>
+      </div>
+      <div class="container">
+        <div id="category-chips" class="chips-bar" aria-label="Quick categories"></div>
+      </div>
+    </header>
+
+    <div class="container layout">
+      <aside class="filters" aria-label="Filters">
+        <div class="filters-header">
+          <h2 class="filter-title" style="margin:0">Filters</h2>
+          <button id="close-filters" class="icon-btn small" type="button" aria-label="Close filters">✕</button>
+        </div>
+
+        <section class="filter-section">
+          <h3 class="filter-title">Categories</h3>
+          <div id="category-filters" class="category-list" aria-live="polite"></div>
+        </section>
+
+        <section class="filter-section">
+          <h3 class="filter-title">Price</h3>
+          <div class="price-controls">
+            <div class="price-input">
+              <label for="min-price">Min</label>
+              <input type="number" id="min-price" min="0" step="1" />
+            </div>
+            <div class="price-input">
+              <label for="max-price">Max</label>
+              <input type="number" id="max-price" min="0" step="1" />
+            </div>
+          </div>
+        </section>
+
+        <section class="filter-section">
+          <h3 class="filter-title">Minimum Rating</h3>
+          <div class="rating-controls">
+            <input type="range" id="min-rating" min="0" max="5" step="0.5" />
+            <div class="rating-value">Min: <span id="min-rating-value">0.0</span></div>
+          </div>
+        </section>
+
+        <button id="reset-filters" class="reset-btn" type="button">Reset Filters</button>
+
+        <div class="results-line">
+          <span id="results-count">0</span> results
+        </div>
+      </aside>
+
+      <main class="products" aria-live="polite">
+        <div id="product-grid" class="product-grid"></div>
+        <div class="pagination" role="navigation" aria-label="Pagination">
+          <div class="pagination-group">
+            <button id="prev-page" class="btn" type="button" aria-label="Previous page">← Prev</button>
+            <button id="next-page" class="btn" type="button" aria-label="Next page">Next →</button>
+          </div>
+          <div id="page-info" class="page-info">Page 1 of 1</div>
+          <div class="page-size">
+            <label for="page-size">Per page</label>
+            <select id="page-size" aria-label="Items per page">
+              <option value="6">6</option>
+              <option value="9" selected>9</option>
+              <option value="12">12</option>
+              <option value="18">18</option>
+            </select>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          Built for GitHub Pages. Source can be deployed from your repository's main branch.
+        </p>
+      </div>
+    </footer>
+
+    <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+    <aside id="cart-drawer" class="drawer" aria-label="Shopping cart" aria-hidden="true">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="close-cart" class="icon-btn small" type="button" aria-label="Close cart">✕</button>
+      </div>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Total</span>
+          <strong id="cart-total">₹0.00</strong>
+        </div>
+        <button class="checkout-btn" type="button" disabled>Checkout (demo)</button>
+      </div>
+    </aside>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html> 
